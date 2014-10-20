@@ -49,13 +49,10 @@
     }
 }
 
-- (UIColor*) getPixelColorAtLocation:(CGPoint)point {
+
+-(UIColor*)getPixelColorAtLocation:(CGPoint)point {
     UIColor* color = nil;
-    
     self.image = [UIImage imageNamed:@"palette.png"];
-    
-    
-    
     CGImageRef inImage = self.image.CGImage;
     // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
     CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
@@ -85,6 +82,8 @@
             int blue = data[offset+3];
             NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
             color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
+            [self.paletteDelegate getColorRGB:red G:green B:blue
+                                        alpha:alpha];
         }
         @catch (NSException * e) {
             NSLog(@"%@",[e reason]);
@@ -100,6 +99,59 @@
     
     return color;
 }
+
+//-(UIColor*)getPixelColorAtLocation:(CGPoint)point {
+//    UIColor* color = nil;
+//    
+//    self.image = [UIImage imageNamed:@"palette.png"];
+//    
+//    
+//    
+//    CGImageRef inImage = self.image.CGImage;
+//    // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
+//    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
+//    if (cgctx == NULL) { return nil;  }
+//    
+//    size_t w = CGImageGetWidth(inImage);
+//    size_t h = CGImageGetHeight(inImage);
+//    CGRect rect = {{0,0},{w,h}};
+//    
+//    // Draw the image to the bitmap context. Once we draw, the memory
+//    // allocated for the context for rendering will then contain the
+//    // raw image data in the specified color space.
+//    CGContextDrawImage(cgctx, rect, inImage);
+//    
+//    // Now we can get a pointer to the image data associated with the bitmap
+//    // context.
+//    unsigned char* data = CGBitmapContextGetData (cgctx);
+//    if (data != NULL) {
+//        //offset locates the pixel in the data from x,y.
+//        //4 for 4 bytes of data per pixel, w is width of one row of data.
+//        @try {
+//            int offset = 4*((w*round(point.y))+round(point.x));
+//            NSLog(@"offset: %d", offset);
+//            int alpha =  data[offset];
+//            int red = data[offset+1];
+//            int green = data[offset+2];
+//            int blue = data[offset+3];
+//            NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
+//            color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
+//        }
+//        @catch (NSException * e) {
+//            NSLog(@"%@",[e reason]);
+//        }
+//        @finally {
+//        }
+//        
+//    }
+//    // When finished, release the context
+//    CGContextRelease(cgctx);
+//    // Free image data memory for the context
+//    if (data) { free(data); }
+//    
+//    return color;
+//}
+
 - (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef) inImage {
     
     CGContextRef    context = NULL;

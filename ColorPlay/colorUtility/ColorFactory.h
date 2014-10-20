@@ -13,4 +13,6 @@
 
 +(NSString *)turnRGBToHex16:(int)r G:(int)g B:(int)b;
 +(UIColor *)getColor:(NSString *)hexColor;
+
+-(NSDictionary*)getPixelColorAtLocation:(CGPoint)point;
 @end
