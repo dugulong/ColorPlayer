@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181B934419F6157C00A9CB79 /* rgb.json in Resources */ = {isa = PBXBuildFile; fileRef = 181B934319F6157C00A9CB79 /* rgb.json */; };
+		181B934A19F6165300A9CB79 /* StandardColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934919F6165300A9CB79 /* StandardColorViewController.m */; };
+		181B934D19F6365700A9CB79 /* FristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934C19F6365700A9CB79 /* FristViewController.m */; };
 		182A040F19F4F9D70006FD8E /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A040E19F4F9D70006FD8E /* Palette.m */; };
 		18C0095A19F4C4F3005439BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095919F4C4F3005439BE /* main.m */; };
 		18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095C19F4C4F3005439BE /* AppDelegate.m */; };
@@ -25,7 +28,6 @@
 		18C009A319F4E673005439BE /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C009A219F4E673005439BE /* SuperViewController.m */; };
 		18C009A519F4E755005439BE /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C009A419F4E755005439BE /* back.png */; };
 		18C009A919F4E7F6005439BE /* ColorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C009A819F4E7F6005439BE /* ColorFactory.m */; };
-		18C009B319F4EEB0005439BE /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18C009B219F4EEB0005439BE /* 12.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		181B934319F6157C00A9CB79 /* rgb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rgb.json; sourceTree = "<group>"; };
+		181B934819F6165300A9CB79 /* StandardColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardColorViewController.h; sourceTree = "<group>"; };
+		181B934919F6165300A9CB79 /* StandardColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardColorViewController.m; sourceTree = "<group>"; };
+		181B934B19F6365700A9CB79 /* FristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FristViewController.h; sourceTree = "<group>"; };
+		181B934C19F6365700A9CB79 /* FristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FristViewController.m; sourceTree = "<group>"; };
 		182A040D19F4F9D70006FD8E /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		182A040E19F4F9D70006FD8E /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		18C0095419F4C4F3005439BE /* ColorPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,7 +74,6 @@
 		18C009A419F4E755005439BE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		18C009A719F4E7F6005439BE /* ColorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorFactory.h; sourceTree = "<group>"; };
 		18C009A819F4E7F6005439BE /* ColorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFactory.m; sourceTree = "<group>"; };
-		18C009B219F4EEB0005439BE /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,10 @@
 				18C0099C19F4E1E2005439BE /* ConvertViewController.m */,
 				18C009A119F4E673005439BE /* SuperViewController.h */,
 				18C009A219F4E673005439BE /* SuperViewController.m */,
+				181B934819F6165300A9CB79 /* StandardColorViewController.h */,
+				181B934919F6165300A9CB79 /* StandardColorViewController.m */,
+				181B934B19F6365700A9CB79 /* FristViewController.h */,
+				181B934C19F6365700A9CB79 /* FristViewController.m */,
 				18C009A619F4E7CE005439BE /* colorUtility */,
 				18C0099E19F4E514005439BE /* resource */,
 				18C0098C19F4C630005439BE /* CDSideBarController */,
@@ -161,7 +171,7 @@
 		18C0099E19F4E514005439BE /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				18C009B219F4EEB0005439BE /* 12.jpg */,
+				181B934319F6157C00A9CB79 /* rgb.json */,
 				18C009A419F4E755005439BE /* back.png */,
 				18C0099F19F4E514005439BE /* palette.png */,
 			);
@@ -267,8 +277,8 @@
 				18C0099719F4C6A0005439BE /* menuClose.png in Resources */,
 				18C009A519F4E755005439BE /* back.png in Resources */,
 				18C0099919F4C6A0005439BE /* menuMap.png in Resources */,
-				18C009B319F4EEB0005439BE /* 12.jpg in Resources */,
 				18C0096519F4C4F3005439BE /* Images.xcassets in Resources */,
+				181B934419F6157C00A9CB79 /* rgb.json in Resources */,
 				18C0099A19F4C6A0005439BE /* menuUsers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +298,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0096019F4C4F3005439BE /* ViewController.m in Sources */,
+				181B934D19F6365700A9CB79 /* FristViewController.m in Sources */,
+				181B934A19F6165300A9CB79 /* StandardColorViewController.m in Sources */,
 				18C0098F19F4C630005439BE /* CDSideBarController.m in Sources */,
 				18C009A319F4E673005439BE /* SuperViewController.m in Sources */,
 				182A040F19F4F9D70006FD8E /* Palette.m in Sources */,

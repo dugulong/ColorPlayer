@@ -82,8 +82,6 @@
             int blue = data[offset+3];
             NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
             color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
-            [self.paletteDelegate getColorRGB:red G:green B:blue
-                                        alpha:alpha];
         }
         @catch (NSException * e) {
             NSLog(@"%@",[e reason]);

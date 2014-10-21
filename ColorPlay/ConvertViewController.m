@@ -10,6 +10,8 @@
 #import "ColorFactory.h"
 #import "Palette.h"
 
+#import "StandardColorViewController.h"
+
 @interface ConvertViewController ()<PaletteDelegate,UITextFieldDelegate>
 {
     UIImageView *_imageView;
@@ -31,7 +33,20 @@
     palette.paletteDelegate =self;
     [self.view addSubview:palette];
     [self setLayout];
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(100,size.height-100, 100, 100);
+    button.backgroundColor = [UIColor redColor];
+    [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
+
+-(void)buttonPress{
+    StandardColorViewController *standardVC =[[StandardColorViewController alloc]init];
+    [self presentViewController:standardVC animated:YES completion:nil];
+}
+
 
 -(void)setLayout{
     float height =palette.frame.size.height+palette.frame.origin.y;
@@ -157,11 +172,6 @@
 
 }
 
--(void)getColorRGB:(int)R G:(int)g B:(int)b alpha:(int)alpha{
-   
-//    NSLog(@"success: %i hue: %0.2f, saturation: %0.2f, brightness: %0.2f, alpha: %0.2f", success, hue, saturation, brightness, alp);
-
-}
 
 
 

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "ConvertViewController.h"
-
+#import "FristViewController.h"
 @interface ViewController ()
 
 @end
@@ -23,11 +23,19 @@
     sideBar = [[CDSideBarController alloc] initWithImages:imageList];
     sideBar.delegate = self;
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100, 100, 100, 100);
-    button.backgroundColor = [UIColor redColor];
-    [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [self setMainButton];
+}
+
+
+-(void)setMainButton{
+    for (int i=0; i<4; i++) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(100,50+120*i, 100, 100);
+        button.backgroundColor = [UIColor redColor];
+        button.tag = 1000+i;
+        [button addTarget:self action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -38,10 +46,15 @@
     [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(30, 50)];
 }
 
--(void)buttonPress{
+-(void)buttonPress:(UIButton *)button{
     NSLog(@"buttonPress");
-    ConvertViewController *convertVC = [[ConvertViewController alloc]init];
-    [self.navigationController pushViewController:convertVC animated:YES];
+    if (button.tag ==1000) {
+        ConvertViewController *convertVC = [[ConvertViewController alloc]init];
+        [self.navigationController pushViewController:convertVC animated:YES];
+    }else if (button.tag ==1001){
+        FristViewController *frist = [[FristViewController alloc]init];
+        [self.navigationController pushViewController:frist animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

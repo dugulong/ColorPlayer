@@ -10,4 +10,5 @@
 
 @interface SuperViewController : UIViewController
 
+-(void)setBackButtonPress;
 @end

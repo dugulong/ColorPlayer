@@ -9,7 +9,9 @@
 #import "SuperViewController.h"
 
 @interface SuperViewController ()
-
+{
+    UIButton *_backButton;
+}
 @end
 
 @implementation SuperViewController
@@ -17,11 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(20,40,40,40);
-    [button setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [self setBackButtonPress];
+}
+
+-(void)setBackButtonPress{
+    if (_backButton ==nil) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backButton.frame = CGRectMake(20,40,40,40);
+        [_backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_backButton];
+    }else{
+        [self.view bringSubviewToFront:_backButton];
+    }
+    
 }
 
 -(void)back{

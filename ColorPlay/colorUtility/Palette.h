@@ -14,7 +14,6 @@
 @optional
 
 - (void)changeColor:(UIColor *)_colorDic;
--(void)getColorRGB:(int)R G:(int)g B:(int)b alpha:(int)alpha;
 @end
 
 @interface Palette : UIView{
