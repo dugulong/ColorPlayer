@@ -30,31 +30,44 @@
     palette = [[Palette alloc]initWithFrame:CGRectMake((size.width-240)/2,40,240,240)];
     palette.paletteDelegate =self;
     [self.view addSubview:palette];
-    
     [self setLayout];
 }
 
 -(void)setLayout{
     float height =palette.frame.size.height+palette.frame.origin.y;
     
-    [self setMyLabel:CGRectMake(20, height+20,30, 30) text:@"R:"];
-    [self setMyTestFeild:CGRectMake(60, height+20, 100, 30) Tag:10000];
+    [self setMyLabel:CGRectMake(10, height+20,30, 30) text:@"R:"];
+    [self setMyTestFeild:CGRectMake(50, height+20, 90, 30) Tag:10000];
     
-    [self setMyLabel:CGRectMake(20, height+60,30, 30) text:@"G:"];
-    [self setMyTestFeild:CGRectMake(60, height+60, 100, 30) Tag:11000];
+    [self setMyLabel:CGRectMake(10, height+60,30, 30) text:@"G:"];
+    [self setMyTestFeild:CGRectMake(50, height+60, 90, 30) Tag:11000];
     
-    [self setMyLabel:CGRectMake(20, height+100,30, 30) text:@"B:"];
-    [self setMyTestFeild:CGRectMake(60, height+100, 100, 30) Tag:12000];
+    [self setMyLabel:CGRectMake(10, height+100,30, 30) text:@"B:"];
+    [self setMyTestFeild:CGRectMake(50, height+100, 90, 30) Tag:12000];
     
     
-    [self setMyLabel:CGRectMake(20, height+140,50, 30) text:@"hex16:"];
-    [self setMyTestFeild:CGRectMake(60, height+140, 100, 30) Tag:13000];
+    [self setMyLabel:CGRectMake(10, height+140,50, 30) text:@"hex16:"];
+    [self setMyTestFeild:CGRectMake(50, height+140, 90, 30) Tag:13000];
+    
+    
+    
+    [self setMyLabel:CGRectMake(170, height+20,30, 30) text:@"H:"];
+    [self setMyTestFeild:CGRectMake(210, height+20, 90, 30) Tag:20000];
+    
+    [self setMyLabel:CGRectMake(170, height+60,30, 30) text:@"S:"];
+    [self setMyTestFeild:CGRectMake(210, height+60, 90, 30) Tag:21000];
+    
+    [self setMyLabel:CGRectMake(170, height+100,30, 30) text:@"B:"];
+    [self setMyTestFeild:CGRectMake(210, height+100, 90, 30) Tag:22000];
+    
+
 }
 
 -(void)setMyTestFeild:(CGRect)rect Tag:(int)tag{
     UITextField *textField = [[UITextField alloc]initWithFrame:rect];
     textField.backgroundColor = [UIColor blueColor];
     textField.tag = tag;
+    textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     textField.textAlignment = NSTextAlignmentCenter;
     textField.delegate = self;
     [self.view addSubview:textField];
@@ -69,50 +82,93 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    [self resetTheColor];
+    [self resetTheColor:textField.tag];
     return NO;
 }
 
 
--(void)resetTheColor{
-    UITextField *r_textField = (UITextField *)[self.view viewWithTag:10000];
-    float r = [r_textField.text floatValue];
+-(void)resetTheColor:(int )tag{
+    if (tag<20000) {
+        UITextField *r_textField = (UITextField *)[self.view viewWithTag:10000];
+        float r = [r_textField.text floatValue];
+        
+        UITextField *g_textField = (UITextField *)[self.view viewWithTag:11000];
+        float g = [g_textField.text floatValue];
+        
+        UITextField *b_textField = (UITextField *)[self.view viewWithTag:12000];
+        float b = [b_textField.text floatValue];
+        
+        self.view.backgroundColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+    }else{
+        UITextField *h_textField = (UITextField *)[self.view viewWithTag:20000];
+        float h = [h_textField.text floatValue];
+        
+        UITextField *s_textField = (UITextField *)[self.view viewWithTag:21000];
+        float s = [s_textField.text floatValue];
+        
+        UITextField *b_textField = (UITextField *)[self.view viewWithTag:22000];
+        float b = [b_textField.text floatValue];
+        
+        self.view.backgroundColor = [UIColor colorWithHue:h saturation:s brightness:b alpha:1.0];
+    }
     
-    UITextField *g_textField = (UITextField *)[self.view viewWithTag:11000];
-    float g = [g_textField.text floatValue];
-    
-    UITextField *b_textField = (UITextField *)[self.view viewWithTag:12000];
-    float b = [b_textField.text floatValue];
-    
-    self.view.backgroundColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
+    [self changeColor:self.view.backgroundColor];
 }
 
-
+#pragma -mark PaletteDelegate
 
 -(void)changeColor:(UIColor *)_color{
     self.view.backgroundColor = _color;
+    
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alph;
+    
+    [self.view.backgroundColor getRed:&red green:&green blue:&blue alpha:&alph];
+
+    UITextField *r_textField = (UITextField *)[self.view viewWithTag:10000];
+    r_textField.text = [NSString stringWithFormat:@"%0.1f",red*255];
+    
+    UITextField *g_textField = (UITextField *)[self.view viewWithTag:11000];
+    g_textField.text = [NSString stringWithFormat:@"%0.1f",green*255];
+    
+    UITextField *b_textField = (UITextField *)[self.view viewWithTag:12000];
+    b_textField.text = [NSString stringWithFormat:@"%0.1f",blue*255];
+    
+    UITextField *hex_textField = (UITextField *)[self.view viewWithTag:13000];
+    hex_textField.text = [NSString stringWithFormat:@"%@",[ColorFactory turnRGBToHex16:red*255 G:green*255 B:blue*255]];
+    
+    
+    CGFloat hue;
+    CGFloat saturation;
+    CGFloat brightness;
+    CGFloat alp;
+    [self.view.backgroundColor getHue:&hue saturation:&saturation brightness:&brightness alpha:&alp];
+    
+    UITextField *h_textField = (UITextField *)[self.view viewWithTag:20000];
+    h_textField.text = [NSString stringWithFormat:@"%0.2f",hue];
+    
+    UITextField *s_textField = (UITextField *)[self.view viewWithTag:21000];
+    s_textField.text = [NSString stringWithFormat:@"%0.2f",saturation];
+    
+    UITextField *bb_textField = (UITextField *)[self.view viewWithTag:22000];
+    bb_textField.text = [NSString stringWithFormat:@"%0.2f",brightness];
+
 }
 
 -(void)getColorRGB:(int)R G:(int)g B:(int)b alpha:(int)alpha{
-    UITextField *r_textField = (UITextField *)[self.view viewWithTag:10000];
-    r_textField.text = [NSString stringWithFormat:@"%d",R];
-    
-    UITextField *g_textField = (UITextField *)[self.view viewWithTag:11000];
-    g_textField.text = [NSString stringWithFormat:@"%d",g];
-    
-    UITextField *b_textField = (UITextField *)[self.view viewWithTag:12000];
-    b_textField.text = [NSString stringWithFormat:@"%d",b];
-    
-    UITextField *hex_textField = (UITextField *)[self.view viewWithTag:13000];
-    hex_textField.text = [NSString stringWithFormat:@"%@",[ColorFactory turnRGBToHex16:R G:g B:b]];
+   
+//    NSLog(@"success: %i hue: %0.2f, saturation: %0.2f, brightness: %0.2f, alpha: %0.2f", success, hue, saturation, brightness, alp);
+
 }
+
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

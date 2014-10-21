@@ -14,6 +14,7 @@
 int RGB(int r,int g,int b)
 {
     return r << 16 | g << 8 | b;
+    
 }
 
 +(NSString *)turnRGBToHex16:(int)r G:(int)g B:(int)b{
@@ -38,56 +39,94 @@ int RGB(int r,int g,int b)
     return [UIColor colorWithRed:(float)(red/255.0f)green:(float)(green/255.0f)blue:(float)(blue/255.0f)alpha:1.0f];
 }
 
-static void RVNColorRGBtoHSL(CGFloat red, CGFloat green, CGFloat blue, CGFloat *hue, CGFloat *saturation, CGFloat *lightness)
+
+
+
+
+typedef struct
 {
-    CGFloat r = red / 255.0f;
-    CGFloat g = green / 255.0f;
-    CGFloat b = blue / 255.0f;
+    double r;       // percent [0 - 1]
+    double g;       // percent [0 - 1]
+    double b;       // percent [0 - 1]
+    double a;       // percent [0 - 1]
+} RGBA;
+
+typedef struct
+{
+    double h;       // angle in degrees [0 - 360]
+    double s;       // percent [0 - 1]
+    double v;       // percent [0 - 1]
+} HSV;
+
+- (RGBA)RGBfromHSV:(HSV)value
+{
+    double      hh, p, q, t, ff;
+    long        i;
+    RGBA        out;
+    out.a       = 1;
     
-    CGFloat max = MAX(r, g);
-    max = MAX(max, b);
-    CGFloat min = MIN(r, g);
-    min = MIN(min, b);
-    
-    CGFloat h;
-    CGFloat s;
-    CGFloat l = (max + min) / 2.0f;
-    
-    if (max == min) {
-        h = 0.0f;
-        s = 0.0f;
-    }
-    
-    else {
-        CGFloat d = max - min;
-        s = l > 0.5f ? d / (2.0f - max - min) : d / (max + min);
-        
-        if (max == r) {
-            h = (g - b) / d + (g < b ? 6.0f : 0.0f);
+    if (value.s <= 0.0) // < is bogus, just shuts up warnings
+    {
+        if (isnan(value.h)) // value.h == NAN
+        {
+            out.r = value.v;
+            out.g = value.v;
+            out.b = value.v;
+            return out;
         }
         
-        else if (max == r) {
-            h = (b - r) / d + 2.0f;
-        }
-        
-        else if (max == b) {
-            h = (r - g) / d + 4.0f;
-        }
-        
-        h /= 6.0f;
+        // error - should never happen
+        out.r = 0.0;
+        out.g = 0.0;
+        out.b = 0.0;
+        return out;
     }
     
-    if (hue) {
-        *hue = roundf(h * 255.0f);
-    }
+    hh = value.h;
+    if(hh >= 360.0) hh = 0.0;
+    hh /= 60.0;
+    i = (long)hh;
+    ff = hh - i;
+    p = value.v * (1.0 - value.s);
+    q = value.v * (1.0 - (value.s * ff));
+    t = value.v * (1.0 - (value.s * (1.0 - ff)));
     
-    if (saturation) {
-        *saturation = roundf(s * 255.0f);
+    switch(i)
+    {
+        case 0:
+            out.r = value.v;
+            out.g = t;
+            out.b = p;
+            break;
+        case 1:
+            out.r = q;
+            out.g = value.v;
+            out.b = p;
+            break;
+        case 2:
+            out.r = p;
+            out.g = value.v;
+            out.b = t;
+            break;
+            
+        case 3:
+            out.r = p;
+            out.g = q;
+            out.b = value.v;
+            break;
+        case 4:
+            out.r = t;
+            out.g = p;
+            out.b = value.v;
+            break;
+        case 5:
+        default:
+            out.r = value.v;
+            out.g = p;
+            out.b = q;
+            break;
     }
-    
-    if (lightness) {
-        *lightness = roundf(l * 255.0f);
-    }
+    return out;     
 }
 
 @end
