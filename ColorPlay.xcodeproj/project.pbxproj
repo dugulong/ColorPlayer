@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		182A040F19F4F9D70006FD8E /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A040E19F4F9D70006FD8E /* Palette.m */; };
+		1843C86819F6007B006D1118 /* ColorPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843C86619F6007B006D1118 /* ColorPlayTests.m */; };
+		1843C86919F6007B006D1118 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1843C86719F6007B006D1118 /* Info.plist */; };
 		18C0095A19F4C4F3005439BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095919F4C4F3005439BE /* main.m */; };
 		18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095C19F4C4F3005439BE /* AppDelegate.m */; };
 		18C0096019F4C4F3005439BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095F19F4C4F3005439BE /* ViewController.m */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		182A040D19F4F9D70006FD8E /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		182A040E19F4F9D70006FD8E /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
+		1843C86619F6007B006D1118 /* ColorPlayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPlayTests.m; sourceTree = "<group>"; };
+		1843C86719F6007B006D1118 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C0095419F4C4F3005439BE /* ColorPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C0095819F4C4F3005439BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C0095919F4C4F3005439BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,9 +92,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1843C86519F6007B006D1118 /* ColorPlayTests */ = {
+			isa = PBXGroup;
+			children = (
+				1843C86619F6007B006D1118 /* ColorPlayTests.m */,
+				1843C86719F6007B006D1118 /* Info.plist */,
+			);
+			path = ColorPlayTests;
+			sourceTree = "<group>";
+		};
 		18C0094B19F4C4F3005439BE = {
 			isa = PBXGroup;
 			children = (
+				1843C86519F6007B006D1118 /* ColorPlayTests */,
 				18C0095619F4C4F3005439BE /* ColorPlay */,
 				18C0095519F4C4F3005439BE /* Products */,
 			);
@@ -267,6 +281,7 @@
 				18C0099719F4C6A0005439BE /* menuClose.png in Resources */,
 				18C009A519F4E755005439BE /* back.png in Resources */,
 				18C0099919F4C6A0005439BE /* menuMap.png in Resources */,
+				1843C86919F6007B006D1118 /* Info.plist in Resources */,
 				18C009B319F4EEB0005439BE /* 12.jpg in Resources */,
 				18C0096519F4C4F3005439BE /* Images.xcassets in Resources */,
 				18C0099A19F4C6A0005439BE /* menuUsers.png in Resources */,
@@ -288,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0096019F4C4F3005439BE /* ViewController.m in Sources */,
+				1843C86819F6007B006D1118 /* ColorPlayTests.m in Sources */,
 				18C0098F19F4C630005439BE /* CDSideBarController.m in Sources */,
 				18C009A319F4E673005439BE /* SuperViewController.m in Sources */,
 				182A040F19F4F9D70006FD8E /* Palette.m in Sources */,
@@ -418,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = ColorPlay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -430,6 +447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = ColorPlay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
