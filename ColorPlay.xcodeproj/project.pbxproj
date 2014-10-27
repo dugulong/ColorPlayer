@@ -10,6 +10,7 @@
 		181B934419F6157C00A9CB79 /* rgb.json in Resources */ = {isa = PBXBuildFile; fileRef = 181B934319F6157C00A9CB79 /* rgb.json */; };
 		181B934A19F6165300A9CB79 /* StandardColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934919F6165300A9CB79 /* StandardColorViewController.m */; };
 		181B934D19F6365700A9CB79 /* FristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934C19F6365700A9CB79 /* FristViewController.m */; };
+		181B935019F641C200A9CB79 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934F19F641C200A9CB79 /* SecondViewController.m */; };
 		182A040F19F4F9D70006FD8E /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A040E19F4F9D70006FD8E /* Palette.m */; };
 		18C0095A19F4C4F3005439BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095919F4C4F3005439BE /* main.m */; };
 		18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0095C19F4C4F3005439BE /* AppDelegate.m */; };
@@ -46,6 +47,8 @@
 		181B934919F6165300A9CB79 /* StandardColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardColorViewController.m; sourceTree = "<group>"; };
 		181B934B19F6365700A9CB79 /* FristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FristViewController.h; sourceTree = "<group>"; };
 		181B934C19F6365700A9CB79 /* FristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FristViewController.m; sourceTree = "<group>"; };
+		181B934E19F641C200A9CB79 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		181B934F19F641C200A9CB79 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		182A040D19F4F9D70006FD8E /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		182A040E19F4F9D70006FD8E /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		18C0095419F4C4F3005439BE /* ColorPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,8 @@
 				181B934919F6165300A9CB79 /* StandardColorViewController.m */,
 				181B934B19F6365700A9CB79 /* FristViewController.h */,
 				181B934C19F6365700A9CB79 /* FristViewController.m */,
+				181B934E19F641C200A9CB79 /* SecondViewController.h */,
+				181B934F19F641C200A9CB79 /* SecondViewController.m */,
 				18C009A619F4E7CE005439BE /* colorUtility */,
 				18C0099E19F4E514005439BE /* resource */,
 				18C0098C19F4C630005439BE /* CDSideBarController */,
@@ -305,6 +310,7 @@
 				182A040F19F4F9D70006FD8E /* Palette.m in Sources */,
 				18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */,
 				18C0099D19F4E1E2005439BE /* ConvertViewController.m in Sources */,
+				181B935019F641C200A9CB79 /* SecondViewController.m in Sources */,
 				18C0095A19F4C4F3005439BE /* main.m in Sources */,
 				18C009A919F4E7F6005439BE /* ColorFactory.m in Sources */,
 			);

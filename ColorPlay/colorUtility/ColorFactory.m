@@ -62,7 +62,10 @@ int RGB(int r,int g,int b)
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     
-    return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+    float rr = r*1.0f;
+    float gg = g*1.0f;
+    float bb = b*1.0f;
+    return [UIColor colorWithRed:(rr / 255.0f) green:(gg / 255.0f) blue:(bb / 255.0f) alpha:1.0f];
 }
 
 

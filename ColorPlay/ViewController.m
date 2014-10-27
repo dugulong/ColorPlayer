@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "ConvertViewController.h"
 #import "FristViewController.h"
+#import "SecondViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -54,6 +56,9 @@
     }else if (button.tag ==1001){
         FristViewController *frist = [[FristViewController alloc]init];
         [self.navigationController pushViewController:frist animated:YES];
+    }else if(button.tag ==1002){
+        SecondViewController *second = [[SecondViewController alloc]init];
+        [self.navigationController pushViewController:second animated:YES];
     }
 }
 

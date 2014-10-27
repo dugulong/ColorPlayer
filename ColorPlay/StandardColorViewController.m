@@ -30,17 +30,22 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
+    
+    [self setBackButtonPress];
 }
 
+-(void)back{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_dataArray count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 70;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 50;
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *str = @"cell";
@@ -49,12 +54,16 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
         NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
         NSString *hexColor = [dic objectForKey:@"t16str"];
-        cell.backgroundColor =[ColorFactory getColor:hexColor];
         
+//        UIView *aView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
         label.text = [NSString stringWithFormat:@"%@  %@  %@",[dic objectForKey:@"chinese"],[dic objectForKey:@"rgbStr"],hexColor];
         label.textAlignment = NSTextAlignmentCenter;
-        [cell addSubview:label];
+        label.backgroundColor = [ColorFactory getColor:hexColor];
+//        [aView addSubview:label];
+        
+        [cell.contentView addSubview:label];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果。
     return cell;
