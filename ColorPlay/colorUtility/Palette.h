@@ -13,7 +13,7 @@
 
 @optional
 
-- (void)changeColor:(UIColor *)_colorDic;
+- (void)changeColor:(UIColor *)_colorDic Location:(CGPoint )point;
 @end
 
 @interface Palette : UIView{
@@ -26,5 +26,5 @@
 @property (strong, nonatomic) id<PaletteDelegate> paletteDelegate;
 
 - (void)logTouchInfo:(UITouch *)touch;
-
+-(void)setImageView;
 @end

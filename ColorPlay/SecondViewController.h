@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SuperViewController.h"
+
 @interface SecondViewController : SuperViewController
 
 @end
