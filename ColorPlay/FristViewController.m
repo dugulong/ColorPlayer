@@ -60,9 +60,13 @@
 }
 
 -(void)gesturePress:(UITapGestureRecognizer *)gest{
-    NSLog(@"gest:%d,%d",gest.view.tag,_currentNumber);
+//    NSLog(@"gest:%d,%d",gest.view.tag,_currentNumber);
     if (_currentNumber ==gest.view.tag-100) {
         [self resetLayout];
+    }else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"失败" message:@"you are loser!" delegate:self cancelButtonTitle:@"再来一次" otherButtonTitles:nil, nil];
+        [self.view addSubview:alert];
+        [alert show];
     }
 }
 @end

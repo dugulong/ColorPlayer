@@ -9,9 +9,9 @@
 #import "SecondViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "Palette.h"
+#import "ColorFactory.h"
 
-@interface SecondViewController ()<PaletteDelegate,UIImagePickerControllerDelegate>
-
+@interface SecondViewController ()<PaletteDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong) AVCaptureSession *captureSession;
 @property(nonatomic,strong) AVCaptureStillImageOutput *stillImageOutput;
 @property(nonatomic,strong) AVCaptureDevice *captureDevice;
@@ -28,6 +28,9 @@
 @implementation SecondViewController{
     Palette *palette;
     
+    CGSize _boundSize;
+    UIButton *_cancelSelectPhotoButton ;
+    UIButton *_selectPhotoButton;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +38,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _boundSize = [UIScreen mainScreen].bounds.size;
     }
     return self;
 }
@@ -101,25 +105,25 @@
         [camerabutton.layer setCornerRadius:20.0];
         [self.view addSubview:camerabutton];
         
-        UIButton *flashbutton = [[UIButton alloc]initWithFrame:CGRectMake(5, 5, 30, 31)];
+        UIButton *flashbutton = [[UIButton alloc]initWithFrame:CGRectMake(5, CGRectGetHeight(self.view.frame)-40, 32, 32)];
         [flashbutton setImage:[UIImage imageNamed:@"flash"] forState:UIControlStateNormal];
         [flashbutton setImage:[UIImage imageNamed:@"flashselected"] forState:UIControlStateSelected];
         [flashbutton addTarget:self action:@selector(flash:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:flashbutton];
         
-        UIButton *frontcamera = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-50, 5, 47, 25)];
+        UIButton *frontcamera = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-35, CGRectGetHeight(self.view.frame)-40, 27, 27)];
         [frontcamera setImage:[UIImage imageNamed:@"front-camera"] forState:UIControlStateNormal];
         [frontcamera addTarget:self action:@selector(showFrontCamera:) forControlEvents:UIControlEventTouchUpInside];
         [frontcamera setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:0.2]];
         [self.view addSubview:frontcamera];
     }
     
-    UIButton *album = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-35, CGRectGetHeight(self.view.frame)-40, 27, 27)];
+    UIButton *album = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-50, 5, 47, 25)];
     [album setImage:[UIImage imageNamed:@"library"] forState:UIControlStateNormal];
     [album addTarget:self action:@selector(showalbum:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:album];
     
-    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(5, CGRectGetHeight(self.view.frame)-40, 32, 32)];
+    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(5, 5, 30, 31)];
     [cancel setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancel];
@@ -131,19 +135,6 @@
     self.imageSelectedView = [[UIView alloc]initWithFrame:self.view.frame];
     [self.imageSelectedView setBackgroundColor:[UIColor clearColor]];
     [self.imageSelectedView addSubview:self.capturedImageView];
-    
-    UIView *overlayView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame)-60, CGRectGetWidth(self.view.frame), 60)];
-    [overlayView setBackgroundColor:[UIColor colorWithWhite:0.2 alpha:0.9]];
-    [self.imageSelectedView addSubview:overlayView];
-    UIButton *selectPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(overlayView.frame)-40, 20, 32, 32)];
-    [selectPhotoButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateNormal];
-    [selectPhotoButton addTarget:self action:@selector(photoSelected:) forControlEvents:UIControlEventTouchUpInside];
-    [overlayView addSubview:selectPhotoButton];
-    
-    UIButton *cancelSelectPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 20, 32, 32)];
-    [cancelSelectPhotoButton setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-    [cancelSelectPhotoButton addTarget:self action:@selector(cancelSelectedPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    [overlayView addSubview:cancelSelectPhotoButton];
 }
 
 
@@ -163,6 +154,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//将控制按钮前置
+-(void)setFontControllerView{
+    CGRect  overlayFrame  = CGRectMake(0,self.view.frame.size.height-60, self.view.frame.size.width, 60);
+    
+    if (_selectPhotoButton==nil) {
+        _selectPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(overlayFrame.size.width-40, 20, 32, 32)];
+        [_selectPhotoButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateNormal];
+        [_selectPhotoButton addTarget:self action:@selector(photoSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_selectPhotoButton];
+    }else{
+        [self.view bringSubviewToFront:_selectPhotoButton];
+    }
+   
+    if (_cancelSelectPhotoButton==nil) {
+        _cancelSelectPhotoButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 20, 32, 32)];
+        [_cancelSelectPhotoButton setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
+        [_cancelSelectPhotoButton addTarget:self action:@selector(cancelSelectedPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_cancelSelectPhotoButton];
+
+    }else{
+        [self.view bringSubviewToFront:_cancelSelectPhotoButton];
+    }
 }
 
 -(void)capturePhoto:(id)sender
@@ -193,17 +208,20 @@
             [self.imageSelectedView setFrame:CGRectMake(0,0,capturedImage.size.width,capturedImage.size.height)];
             [self.capturedImageView setFrame:CGRectMake(0,0,capturedImage.size.width,capturedImage.size.height)];
             
-            
-            capturedImage = [self scaleToSize:capturedImage size:CGSizeMake(320*2, 480*2)];
+          
+            capturedImage = [self scaleToSize:capturedImage size:CGSizeMake(_boundSize.width*2, _boundSize.height*2)];
             
             palette = [[Palette alloc]initWithFrame:CGRectMake(0,0,capturedImage.size.width/2,capturedImage.size.height/2)];
             palette.image =capturedImage;
             [palette setImageView];
             palette.paletteDelegate =self;
             [self.view addSubview:palette];
+            
+            [self setFontControllerView];
         }
     }];
 }
+
 
 
 - (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
@@ -281,16 +299,34 @@
 {
     
     [self dismissViewControllerAnimated:YES completion:^{
-//        if ([self.delegate respondsToSelector:@selector(imageSelected:)]) {
-//            [self.delegate imageSelected:self.selectedImage];
-//        }
         [palette removeFromSuperview];
     }];
 }
 
 -(void)cancelSelectedPhoto:(id)sender
 {
-    [palette removeFromSuperview];
+    if (palette !=nil) {
+        [palette removeFromSuperview];
+    }
+    if (_selectPhotoButton !=nil) {
+        [_selectPhotoButton removeFromSuperview];
+        _selectPhotoButton = nil;
+    }
+    if (_cancelSelectPhotoButton !=nil) {
+        [_cancelSelectPhotoButton removeFromSuperview];
+        _cancelSelectPhotoButton  = nil;
+    }
+    if ( self.pickedColorImageView !=nil) {
+        [self.pickedColorImageView removeFromSuperview];
+        self.pickedColorImageView = nil;
+    }
+    
+    UIView *aView =[self.view viewWithTag:99999];
+    if (aView !=nil) {
+        [aView removeFromSuperview];
+        aView  = nil;
+    }
+   
 }
 
 -(void)cancel:(id)sender
@@ -301,7 +337,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [self scaleToSize:image size:CGSizeMake(320*2, 480*2)];
+    image = [self scaleToSize:image size:CGSizeMake(_boundSize.width*2, _boundSize.height*2)];
     if (palette==nil) {
         palette = [[Palette alloc]initWithFrame:CGRectMake(0,0,image.size.width/2,image.size.height/2)];
         palette.image = image;
@@ -310,9 +346,10 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [palette setImageView];
         [self.view addSubview:palette];
+        [self setFontControllerView];
     }];
+    
 }
-
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -321,14 +358,46 @@
 
 - (void)changeColor:(UIColor *)_colorDic Location:(CGPoint)point{
     if (self.pickedColorImageView==nil) {
-        self.pickedColorImageView  =[[UIImageView alloc]initWithFrame:CGRectMake(0,0,146.0/2, 146.0/2)];
+        self.pickedColorImageView  =[[UIImageView alloc]initWithFrame:CGRectMake(0,0,100,100)];
         self.pickedColorImageView.image =[UIImage imageNamed:@"roundMask.png"];
         [self.view addSubview:self.pickedColorImageView];
     }
     self.pickedColorImageView.center = CGPointMake(point.x/2, point.y/2);
     [self.view bringSubviewToFront:self.pickedColorImageView];
-    
     [self changColorOfImage:[UIImage imageNamed:@"roundMask.png"] withColor:_colorDic];
+    
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alph;
+    [_colorDic getRed:&red green:&green blue:&blue alpha:&alph];
+    
+    
+    CGFloat hue;
+    CGFloat saturation;
+    CGFloat brightness;
+    CGFloat alp;
+    [_colorDic getHue:&hue saturation:&saturation brightness:&brightness alpha:&alp];
+    
+    UIView *aView =[self.view viewWithTag:99999];
+    if (aView==nil) {
+        aView = [[UIView alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-60, self.view.frame.size.width,60)];
+        aView.tag = 99999;
+        //        aView.alpha = 0.3;
+        [self.view addSubview:aView];
+    }
+    aView.backgroundColor = _colorDic;
+    UIButton *dataBtn = (UIButton *)[aView viewWithTag:99998];
+    if (dataBtn ==nil) {
+        dataBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+        dataBtn.tag = 99998;
+        dataBtn.backgroundColor = [UIColor clearColor];
+        dataBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        dataBtn.titleLabel.numberOfLines =3;
+        [aView addSubview:dataBtn];
+    }
+        [dataBtn setTitle:[NSString stringWithFormat:@"RGB  R:%.2f,G:%.2f,B:%.2f\nHSB  H:%.2f,S:%.2f,B:%.2f\nHex16  %@",red,green,blue,hue,saturation,brightness,[ColorFactory turnRGBToHex16:red*255 G:green*255 B:blue*255]] forState:UIControlStateNormal];
+         dataBtn.frame = CGRectMake(0,0,aView.frame.size.width,aView.frame.size.height);
 }
 
 

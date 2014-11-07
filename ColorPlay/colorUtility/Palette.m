@@ -8,7 +8,9 @@
 
 #import "Palette.h"
 
-@implementation Palette
+@implementation Palette{
+    CGSize _boundSize;
+}
 @synthesize image;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -88,7 +90,8 @@
         //4 for 4 bytes of data per pixel, w is width of one row of data.
         @try {
             int offset = 4*((w*round(point.y))+round(point.x));
-//            NSLog(@"offset: %d", offset);
+            NSLog(@"offset: %d,,%ld", offset,sizeof(data));
+
             int alpha =  data[offset];
             int red = data[offset+1];
             int green = data[offset+2];

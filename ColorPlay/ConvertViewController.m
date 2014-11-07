@@ -29,7 +29,12 @@
     self.view.backgroundColor=[UIColor grayColor];
     
     CGSize size = [UIScreen mainScreen].bounds.size;
-    palette = [[Palette alloc]initWithFrame:CGRectMake((size.width-240)/2,40,240,240)];
+//    palette = [[Palette alloc]initWithFrame:CGRectMake((size.width-240)/2,40,240,240)];
+    UIImage *image = [UIImage imageNamed:@"palette.png"];
+
+    palette = [[Palette alloc]initWithFrame:CGRectMake((self.view.frame.size.width-image.size.width/2)/2,0,image.size.width/2,image.size.height/2)];
+    palette.image = image;
+    [palette setImageView];
     palette.paletteDelegate =self;
     [self.view addSubview:palette];
     [self setLayout];
@@ -127,12 +132,12 @@
         self.view.backgroundColor = [UIColor colorWithHue:h saturation:s brightness:b alpha:1.0];
     }
     
-    [self changeColor:self.view.backgroundColor];
+    [self changeColor:self.view.backgroundColor Location:CGPointZero];
 }
 
 #pragma -mark PaletteDelegate
 
--(void)changeColor:(UIColor *)_color{
+-(void)changeColor:(UIColor *)_color Location:(CGPoint)point{
     self.view.backgroundColor = _color;
     
     CGFloat red;
