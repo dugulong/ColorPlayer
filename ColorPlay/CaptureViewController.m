@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 pavan krishnamurthy. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "CaptureViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "Palette.h"
 #import "ColorFactory.h"
 
-@interface SecondViewController ()<PaletteDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface CaptureViewController ()<PaletteDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,strong) AVCaptureSession *captureSession;
 @property(nonatomic,strong) AVCaptureStillImageOutput *stillImageOutput;
 @property(nonatomic,strong) AVCaptureDevice *captureDevice;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation SecondViewController{
+@implementation CaptureViewController{
     Palette *palette;
     
     CGSize _boundSize;
@@ -58,6 +58,7 @@
 {
     return NO;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

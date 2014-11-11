@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		181B934419F6157C00A9CB79 /* rgb.json in Resources */ = {isa = PBXBuildFile; fileRef = 181B934319F6157C00A9CB79 /* rgb.json */; };
 		181B934A19F6165300A9CB79 /* StandardColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934919F6165300A9CB79 /* StandardColorViewController.m */; };
-		181B934D19F6365700A9CB79 /* FristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934C19F6365700A9CB79 /* FristViewController.m */; };
-		181B935019F641C200A9CB79 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B934F19F641C200A9CB79 /* SecondViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		182A040F19F4F9D70006FD8E /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A040E19F4F9D70006FD8E /* Palette.m */; };
+		18547DEB1A11C091006F127E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DEA1A11C091006F127E /* PhotoViewController.m */; };
+		18547DEE1A11C0EA006F127E /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DED1A11C0EA006F127E /* CaptureViewController.m */; };
+		18547DF11A11C11B006F127E /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DF01A11C11B006F127E /* PlayViewController.m */; };
 		1871FC4A1A01E7AA0068FBD5 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC381A01E7AA0068FBD5 /* Cancel.png */; };
 		1871FC4B1A01E7AA0068FBD5 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC391A01E7AA0068FBD5 /* cancel@2x.png */; };
 		1871FC4C1A01E7AA0068FBD5 /* colorBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC3A1A01E7AA0068FBD5 /* colorBack.png */; };
@@ -62,12 +63,14 @@
 		181B934319F6157C00A9CB79 /* rgb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rgb.json; sourceTree = "<group>"; };
 		181B934819F6165300A9CB79 /* StandardColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardColorViewController.h; sourceTree = "<group>"; };
 		181B934919F6165300A9CB79 /* StandardColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardColorViewController.m; sourceTree = "<group>"; };
-		181B934B19F6365700A9CB79 /* FristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FristViewController.h; sourceTree = "<group>"; };
-		181B934C19F6365700A9CB79 /* FristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FristViewController.m; sourceTree = "<group>"; };
-		181B934E19F641C200A9CB79 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		181B934F19F641C200A9CB79 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		182A040D19F4F9D70006FD8E /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		182A040E19F4F9D70006FD8E /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
+		18547DE91A11C091006F127E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		18547DEA1A11C091006F127E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		18547DEC1A11C0EA006F127E /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
+		18547DED1A11C0EA006F127E /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
+		18547DEF1A11C11B006F127E /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		18547DF01A11C11B006F127E /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		1871FC381A01E7AA0068FBD5 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		1871FC391A01E7AA0068FBD5 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		1871FC3A1A01E7AA0068FBD5 /* colorBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBack.png; sourceTree = "<group>"; };
@@ -187,10 +190,12 @@
 				18C009A219F4E673005439BE /* SuperViewController.m */,
 				181B934819F6165300A9CB79 /* StandardColorViewController.h */,
 				181B934919F6165300A9CB79 /* StandardColorViewController.m */,
-				181B934B19F6365700A9CB79 /* FristViewController.h */,
-				181B934C19F6365700A9CB79 /* FristViewController.m */,
-				181B934E19F641C200A9CB79 /* SecondViewController.h */,
-				181B934F19F641C200A9CB79 /* SecondViewController.m */,
+				18547DEC1A11C0EA006F127E /* CaptureViewController.h */,
+				18547DEF1A11C11B006F127E /* PlayViewController.h */,
+				18547DF01A11C11B006F127E /* PlayViewController.m */,
+				18547DED1A11C0EA006F127E /* CaptureViewController.m */,
+				18547DE91A11C091006F127E /* PhotoViewController.h */,
+				18547DEA1A11C091006F127E /* PhotoViewController.m */,
 				18C009A619F4E7CE005439BE /* colorUtility */,
 				18C0099E19F4E514005439BE /* resource */,
 				18C0098C19F4C630005439BE /* CDSideBarController */,
@@ -381,14 +386,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0096019F4C4F3005439BE /* ViewController.m in Sources */,
-				181B934D19F6365700A9CB79 /* FristViewController.m in Sources */,
 				181B934A19F6165300A9CB79 /* StandardColorViewController.m in Sources */,
 				18C0098F19F4C630005439BE /* CDSideBarController.m in Sources */,
 				18C009A319F4E673005439BE /* SuperViewController.m in Sources */,
+				18547DF11A11C11B006F127E /* PlayViewController.m in Sources */,
+				18547DEE1A11C0EA006F127E /* CaptureViewController.m in Sources */,
 				182A040F19F4F9D70006FD8E /* Palette.m in Sources */,
 				18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */,
 				18C0099D19F4E1E2005439BE /* ConvertViewController.m in Sources */,
-				181B935019F641C200A9CB79 /* SecondViewController.m in Sources */,
+				18547DEB1A11C091006F127E /* PhotoViewController.m in Sources */,
 				18C0095A19F4C4F3005439BE /* main.m in Sources */,
 				18C009A919F4E7F6005439BE /* ColorFactory.m in Sources */,
 			);

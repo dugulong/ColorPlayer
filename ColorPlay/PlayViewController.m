@@ -1,14 +1,14 @@
 //
-//  FristViewController.m
+//  PlayViewController.m
 //  ColorPlay
 //
 //  Created by long_zhang on 14-10-21.
 //  Copyright (c) 2014年 admaster. All rights reserved.
 //
 
-#import "FristViewController.h"
+#import "PlayViewController.h"
 
-@implementation FristViewController
+@implementation PlayViewController
 {
     int _currentNumber;
 }
@@ -37,7 +37,6 @@
     int g_arc =  (arc4random() % 100) +155;
     int b_arc =  (arc4random() % 100) +155;
 
-    
     UIColor *color = [UIColor colorWithRed:(float)r_arc/255 green:(float)g_arc/255 blue:(float)b_arc/255  alpha:1.0];
     UIColor *color1 = [UIColor colorWithRed:(float)(r_arc+15)/255 green:(float)g_arc/255 blue:(float)b_arc/255  alpha:1.0];
     

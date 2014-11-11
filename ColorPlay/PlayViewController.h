@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  PlayViewController.h
 //  ColorPlay
 //
 //  Created by long_zhang on 14-10-21.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SuperViewController.h"
 
-@interface SecondViewController : SuperViewController
+@interface PlayViewController : SuperViewController
 
 @end

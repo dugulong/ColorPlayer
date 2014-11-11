@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "ConvertViewController.h"
-#import "FristViewController.h"
-#import "SecondViewController.h"
+#import "PlayViewController.h"
+#import "CaptureViewController.h"
+#import "PhotoViewController.h"
 
 @interface ViewController ()
 
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view, typically from a nib.test
     NSArray *imageList = @[[UIImage imageNamed:@"menuChat.png"], [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList];
@@ -33,7 +34,7 @@
     for (int i=0; i<4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(100,50+120*i, 100, 100);
-        button.backgroundColor = [UIColor redColor];
+        button.backgroundColor = [UIColor grayColor];
         button.tag = 1000+i;
         [button addTarget:self action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
@@ -54,12 +55,16 @@
         ConvertViewController *convertVC = [[ConvertViewController alloc]init];
         [self.navigationController pushViewController:convertVC animated:YES];
     }else if (button.tag ==1001){
-        FristViewController *frist = [[FristViewController alloc]init];
+        PlayViewController *frist = [[PlayViewController alloc]init];
         [self.navigationController pushViewController:frist animated:YES];
     }else if(button.tag ==1002){
-        SecondViewController *second = [[SecondViewController alloc]init];
+        CaptureViewController *second = [[CaptureViewController alloc]init];
         [self.navigationController pushViewController:second animated:YES];
+    }else if(button.tag ==1003){
+        PhotoViewController *photoVC = [[PhotoViewController alloc]init];
+        [self.navigationController pushViewController:photoVC animated:YES];
     }
+
 }
 
 - (void)didReceiveMemoryWarning {
