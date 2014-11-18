@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SuperViewController.h"
 
+typedef void(^ColorBlock)(NSDictionary *colorDic);
+
 @interface StandardColorViewController : SuperViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    ColorBlock _colorBlock;
+}
+
+-(void)didSelectTheColor:(ColorBlock)colorBlock;
 @end

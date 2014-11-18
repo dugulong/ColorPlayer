@@ -23,16 +23,26 @@
 
 @implementation ConvertViewController
 
+-(void)setInitBackground{
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"rgb" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSArray *tempArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    int index = arc4random()%[tempArray count];
+    NSDictionary *tempDic = [tempArray objectAtIndex:index];
+    NSString *hexColor = [tempDic objectForKey:@"t16str"];
+    [self changeColor:[ColorFactory getColor:hexColor] Location:CGPointZero];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor grayColor];
     
     CGSize size = [UIScreen mainScreen].bounds.size;
-//    palette = [[Palette alloc]initWithFrame:CGRectMake((size.width-240)/2,40,240,240)];
-    UIImage *image = [UIImage imageNamed:@"palette.png"];
 
-    palette = [[Palette alloc]initWithFrame:CGRectMake((self.view.frame.size.width-image.size.width/2)/2,0,image.size.width/2,image.size.height/2)];
+    UIImage *image = [UIImage imageNamed:@"palette.png"];
+    palette = [[Palette alloc]initWithFrame:CGRectMake((self.view.frame.size.width-image.size.width/2)/2,40,image.size.width/2,image.size.height/2)];
     palette.image = image;
     [palette setImageView];
     palette.paletteDelegate =self;
@@ -41,14 +51,61 @@
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100,size.height-100, 100, 100);
+    button.frame = CGRectMake(30,size.height-100,50,30);
     button.backgroundColor = [UIColor redColor];
     [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    
+    UIButton *saveColor = [UIButton buttonWithType:UIButtonTypeCustom];
+    saveColor.frame = CGRectMake(130,size.height-100,50,30);
+    saveColor.backgroundColor = [UIColor redColor];
+    [saveColor addTarget:self action:@selector(saveColorPress) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:saveColor];
+    
+    [self setInitBackground];
+
 }
+
+-(void)saveColorPress{
+    UIImage *image = [self createImageWithColor:self.view.backgroundColor];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
+}
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSString *message;
+    if (!error) {
+        message = @"成功保存到相册";
+    }else
+    {
+        message = @"保存失败";
+    }
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"保存图片" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [self.view addSubview:alert];
+    [alert show];
+}
+
+- (UIImage *)createImageWithColor: (UIColor *) color
+{
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    CGRect rect=CGRectMake(0.0f, 0.0f,size.width,size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
+
 
 -(void)buttonPress{
     StandardColorViewController *standardVC =[[StandardColorViewController alloc]init];
+    [standardVC didSelectTheColor:^(NSDictionary *colorDic){
+        NSString *hexColor = [colorDic objectForKey:@"t16str"];
+//        self.view.backgroundColor =[ColorFactory getColor:hexColor];
+        [self changeColor:[ColorFactory getColor:hexColor] Location:CGPointZero];
+    }];
     [self presentViewController:standardVC animated:YES completion:nil];
 }
 
@@ -66,8 +123,8 @@
     [self setMyTestFeild:CGRectMake(50, height+100, 90, 30) Tag:12000];
     
     
-    [self setMyLabel:CGRectMake(10, height+140,50, 30) text:@"hex16:"];
-    [self setMyTestFeild:CGRectMake(50, height+140, 90, 30) Tag:13000];
+    [self setMyLabel:CGRectMake(10, height+140,100, 30) text:@"16进制:"];
+    [self setMyTestFeild:CGRectMake(120, height+140, 90, 30) Tag:13000];
     
     
     
@@ -85,7 +142,7 @@
 
 -(void)setMyTestFeild:(CGRect)rect Tag:(int)tag{
     UITextField *textField = [[UITextField alloc]initWithFrame:rect];
-    textField.backgroundColor = [UIColor blueColor];
+    textField.backgroundColor = [UIColor clearColor];
     textField.tag = tag;
     textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     textField.textAlignment = NSTextAlignmentCenter;

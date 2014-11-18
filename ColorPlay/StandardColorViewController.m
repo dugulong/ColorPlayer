@@ -61,12 +61,19 @@
         label.text = [NSString stringWithFormat:@"%@  %@  %@",[dic objectForKey:@"chinese"],[dic objectForKey:@"rgbStr"],hexColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [ColorFactory getColor:hexColor];
-//        [aView addSubview:label];
-        
         [cell.contentView addSubview:label];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;//取消选中效果。
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;//取消选中效果。
     return cell;
 }
 
+-(void)didSelectTheColor:(ColorBlock)colorBlock{
+    _colorBlock = colorBlock;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    _colorBlock(dic);
+
+}
 @end

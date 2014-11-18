@@ -13,6 +13,7 @@
 		18547DEB1A11C091006F127E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DEA1A11C091006F127E /* PhotoViewController.m */; };
 		18547DEE1A11C0EA006F127E /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DED1A11C0EA006F127E /* CaptureViewController.m */; };
 		18547DF11A11C11B006F127E /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DF01A11C11B006F127E /* PlayViewController.m */; };
+		18547DFB1A121333006F127E /* SelfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18547DFA1A121333006F127E /* SelfView.m */; };
 		1871FC4A1A01E7AA0068FBD5 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC381A01E7AA0068FBD5 /* Cancel.png */; };
 		1871FC4B1A01E7AA0068FBD5 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC391A01E7AA0068FBD5 /* cancel@2x.png */; };
 		1871FC4C1A01E7AA0068FBD5 /* colorBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1871FC3A1A01E7AA0068FBD5 /* colorBack.png */; };
@@ -71,6 +72,8 @@
 		18547DED1A11C0EA006F127E /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
 		18547DEF1A11C11B006F127E /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		18547DF01A11C11B006F127E /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		18547DF91A121333006F127E /* SelfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfView.h; sourceTree = "<group>"; };
+		18547DFA1A121333006F127E /* SelfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfView.m; sourceTree = "<group>"; };
 		1871FC381A01E7AA0068FBD5 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		1871FC391A01E7AA0068FBD5 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		1871FC3A1A01E7AA0068FBD5 /* colorBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBack.png; sourceTree = "<group>"; };
@@ -190,9 +193,9 @@
 				18C009A219F4E673005439BE /* SuperViewController.m */,
 				181B934819F6165300A9CB79 /* StandardColorViewController.h */,
 				181B934919F6165300A9CB79 /* StandardColorViewController.m */,
-				18547DEC1A11C0EA006F127E /* CaptureViewController.h */,
 				18547DEF1A11C11B006F127E /* PlayViewController.h */,
 				18547DF01A11C11B006F127E /* PlayViewController.m */,
+				18547DEC1A11C0EA006F127E /* CaptureViewController.h */,
 				18547DED1A11C0EA006F127E /* CaptureViewController.m */,
 				18547DE91A11C091006F127E /* PhotoViewController.h */,
 				18547DEA1A11C091006F127E /* PhotoViewController.m */,
@@ -252,6 +255,8 @@
 		18C009A619F4E7CE005439BE /* colorUtility */ = {
 			isa = PBXGroup;
 			children = (
+				18547DF91A121333006F127E /* SelfView.h */,
+				18547DFA1A121333006F127E /* SelfView.m */,
 				182A040D19F4F9D70006FD8E /* Palette.h */,
 				182A040E19F4F9D70006FD8E /* Palette.m */,
 				18C009A719F4E7F6005439BE /* ColorFactory.h */,
@@ -390,6 +395,7 @@
 				18C0098F19F4C630005439BE /* CDSideBarController.m in Sources */,
 				18C009A319F4E673005439BE /* SuperViewController.m in Sources */,
 				18547DF11A11C11B006F127E /* PlayViewController.m in Sources */,
+				18547DFB1A121333006F127E /* SelfView.m in Sources */,
 				18547DEE1A11C0EA006F127E /* CaptureViewController.m in Sources */,
 				182A040F19F4F9D70006FD8E /* Palette.m in Sources */,
 				18C0095D19F4C4F3005439BE /* AppDelegate.m in Sources */,

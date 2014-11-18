@@ -31,7 +31,7 @@
 
 
 -(void)setMainButton{
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<3; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(100,50+120*i, 100, 100);
         button.backgroundColor = [UIColor grayColor];
@@ -44,27 +44,20 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-//    [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(30, 50)];
     [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(30, 50)];
 }
 
 -(void)buttonPress:(UIButton *)button{
-    NSLog(@"buttonPress");
     if (button.tag ==1000) {
         ConvertViewController *convertVC = [[ConvertViewController alloc]init];
         [self.navigationController pushViewController:convertVC animated:YES];
     }else if (button.tag ==1001){
-        PlayViewController *frist = [[PlayViewController alloc]init];
-        [self.navigationController pushViewController:frist animated:YES];
-    }else if(button.tag ==1002){
         CaptureViewController *second = [[CaptureViewController alloc]init];
         [self.navigationController pushViewController:second animated:YES];
-    }else if(button.tag ==1003){
-        PhotoViewController *photoVC = [[PhotoViewController alloc]init];
-        [self.navigationController pushViewController:photoVC animated:YES];
-    }
-
+    }else if(button.tag ==1002){
+        PlayViewController *frist = [[PlayViewController alloc]init];
+        [self.navigationController pushViewController:frist animated:YES];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
