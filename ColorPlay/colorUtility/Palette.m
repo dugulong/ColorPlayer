@@ -47,13 +47,13 @@
 
     locInSelf = CGPointMake(locInSelf.x*2, locInSelf.y*2);
 //    NSLog(@"touch.locationInView = {%2.3f, %2.3f}", locInSelf.x, locInSelf.y);
-    
-    [self.paletteDelegate changeColor:[self getPixelColorAtLocation:locInSelf] Location:locInSelf];
-
+    UIColor *color = [self getPixelColorAtLocation:locInSelf];
+    if (color !=nil) {
+        [self.paletteDelegate changeColor:color Location:locInSelf];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"touchesBegan - touch count = %d", [touches count]);
     for(UITouch *touch in event.allTouches) {
         [self logTouchInfo:touch];
     }
@@ -96,7 +96,10 @@
             int red = data[offset+1];
             int green = data[offset+2];
             int blue = data[offset+3];
-//            NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
+            if (red==0&&green==0&&blue==0) {
+                return nil;
+            }
+            NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
             color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
         }
         @catch (NSException * e) {

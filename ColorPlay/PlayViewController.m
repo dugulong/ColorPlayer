@@ -20,6 +20,7 @@
     [self resetLayout];
 }
 
+
 -(void)resetLayout{
     UIView *displayView =[self.view viewWithTag:3000];
     if (displayView !=nil) {

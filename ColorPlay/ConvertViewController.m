@@ -49,15 +49,18 @@
     [self.view addSubview:palette];
     [self setLayout];
     
-    
+    float bottomHeight = 50;
+    if (size.height>480) {
+        bottomHeight = 120;
+    }
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(30,size.height-100,50,30);
+    button.frame = CGRectMake(30,size.height-bottomHeight,50,30);
     button.backgroundColor = [UIColor redColor];
     [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     UIButton *saveColor = [UIButton buttonWithType:UIButtonTypeCustom];
-    saveColor.frame = CGRectMake(130,size.height-100,50,30);
+    saveColor.frame = CGRectMake(size.width-80,size.height-bottomHeight,50,30);
     saveColor.backgroundColor = [UIColor redColor];
     [saveColor addTarget:self action:@selector(saveColorPress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:saveColor];
@@ -113,29 +116,29 @@
 -(void)setLayout{
     float height =palette.frame.size.height+palette.frame.origin.y;
     
-    [self setMyLabel:CGRectMake(10, height+20,30, 30) text:@"R:"];
+    [self setMyLabel:CGRectMake(30, height+20,30, 30) text:@"R:"];
     [self setMyTestFeild:CGRectMake(50, height+20, 90, 30) Tag:10000];
     
-    [self setMyLabel:CGRectMake(10, height+60,30, 30) text:@"G:"];
-    [self setMyTestFeild:CGRectMake(50, height+60, 90, 30) Tag:11000];
+    [self setMyLabel:CGRectMake(30, height+50,30, 30) text:@"G:"];
+    [self setMyTestFeild:CGRectMake(50, height+50, 90, 30) Tag:11000];
     
-    [self setMyLabel:CGRectMake(10, height+100,30, 30) text:@"B:"];
-    [self setMyTestFeild:CGRectMake(50, height+100, 90, 30) Tag:12000];
+    [self setMyLabel:CGRectMake(30, height+80,30, 30) text:@"B:"];
+    [self setMyTestFeild:CGRectMake(50, height+80, 90, 30) Tag:12000];
     
     
-    [self setMyLabel:CGRectMake(10, height+140,100, 30) text:@"16进制:"];
-    [self setMyTestFeild:CGRectMake(120, height+140, 90, 30) Tag:13000];
+    [self setMyLabel:CGRectMake(30, height+110,70, 30) text:@"16进制:"];
+    [self setMyTestFeild:CGRectMake(90, height+110,80, 30) Tag:13000];
     
     
     
     [self setMyLabel:CGRectMake(170, height+20,30, 30) text:@"H:"];
-    [self setMyTestFeild:CGRectMake(210, height+20, 90, 30) Tag:20000];
+    [self setMyTestFeild:CGRectMake(200, height+20, 90, 30) Tag:20000];
     
-    [self setMyLabel:CGRectMake(170, height+60,30, 30) text:@"S:"];
-    [self setMyTestFeild:CGRectMake(210, height+60, 90, 30) Tag:21000];
+    [self setMyLabel:CGRectMake(170, height+50,30, 30) text:@"S:"];
+    [self setMyTestFeild:CGRectMake(200, height+50, 90, 30) Tag:21000];
     
-    [self setMyLabel:CGRectMake(170, height+100,30, 30) text:@"B:"];
-    [self setMyTestFeild:CGRectMake(210, height+100, 90, 30) Tag:22000];
+    [self setMyLabel:CGRectMake(170, height+80,30, 30) text:@"B:"];
+    [self setMyTestFeild:CGRectMake(200, height+80, 90, 30) Tag:22000];
     
 
 }
@@ -153,7 +156,7 @@
 -(void)setMyLabel:(CGRect)rect text:(NSString *)text{
     UILabel *label = [[UILabel alloc]initWithFrame:rect];
     label.text = text;
-    label.textAlignment =NSTextAlignmentCenter;
+    label.textAlignment =NSTextAlignmentLeft;
     [self.view addSubview:label];
 }
 
